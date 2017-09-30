@@ -1,0 +1,26 @@
+﻿{
+  "dependencies": {
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
+    "Plugins.Forms.ButtonCircle": "1.2.25",
+    "Xam.FormsPlugin.Iconize": "1.0.10",
+    "Xam.Plugin.Iconize": "1.0.10",
+    "Xam.Plugin.Iconize.Material": "1.0.10",
+    "Xam.Plugin.Iconize.SimpleLineIcons": "1.0.10",
+    "Xam.Plugins.Forms.ImageCircle": "1.8.1",
+    "Xam.Plugins.Notifier": "2.1.0",
+    "Xamarin.Forms": "2.3.4.267",
+    "Xamarin.Plugins.Clipboard": "1.2.0",
+    "YoutubeExplode": "3.2.5"
+  },
+  "frameworks": {
+    "uap10.0.10586": {}
+  },
+  "runtimes": {
+    "win10-arm": {},
+    "win10-arm-aot": {},
+    "win10-x86": {},
+    "win10-x86-aot": {},
+    "win10-x64": {},
+    "win10-x64-aot": {}
+  }
+}

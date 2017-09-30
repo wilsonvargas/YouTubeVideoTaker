@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:YoutubeVideoTaker"
+             xmlns:validator="clr-namespace:YoutubeVideoTaker.Validators"
+             xmlns:controls="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
+             x:Class="YoutubeVideoTaker.Views.MainPage">
+
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="15">
+            <Image Source="yt_logo_rgb_light.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  />
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <Entry Placeholder="Paste here your url video" Text="{Binding Url}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding MessageError}" TextColor="Red" FontSize="Micro"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                    <controls:CircleButton Icon="ic_content_paste" FontSize="30" BackgroundColor="#DCDCDC" TextColor="Black" HeightRequest="50" WidthRequest="50" BorderRadius="50" Command="{Binding PasteCommand}"/>
+                    <controls:CircleButton Icon="ic_search" FontSize="30" BackgroundColor="#DCDCDC" TextColor="Black" HeightRequest="50" WidthRequest="50" BorderRadius="50" Command="{Binding SearchCommand}"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        
+        <ActivityIndicator IsVisible="{Binding IsBusy}" Color="Red" BackgroundColor="Gray" IsRunning="{Binding IsBusy}"
+            VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Opacity="0.4"/>
+    </Grid>
+</ContentPage>
