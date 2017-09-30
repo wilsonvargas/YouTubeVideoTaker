@@ -42,7 +42,6 @@ namespace YoutubeVideoTaker.ViewModels
         {
             PasteCommand = new Command(Paste);
             SearchCommand = new Command(Search);
-            Url = "https://www.youtube.com/watch?v=cpN78ZjnCZY";
         }
 
         private async void Paste()
