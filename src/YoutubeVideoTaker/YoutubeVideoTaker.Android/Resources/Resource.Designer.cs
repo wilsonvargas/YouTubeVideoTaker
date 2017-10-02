@@ -2773,7 +2773,7 @@ namespace YoutubeVideoTaker.Droid
 			public const int plugin_lc_smallicon = 2130837772;
 			
 			// aapt resource value: 0x7f02010d
-			public const int yt_logo_rgb_light = 2130837773;
+			public const int portada = 2130837773;
 			
 			static Drawable()
 			{

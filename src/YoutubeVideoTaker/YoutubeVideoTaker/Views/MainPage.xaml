@@ -8,7 +8,7 @@
 
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="15">
-            <Image Source="yt_logo_rgb_light.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  />
+            <Image Source="portada.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  />
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                 <Entry Placeholder="Paste here your url video" Text="{Binding Url}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
                 <Label Text="{Binding MessageError}" TextColor="Red" FontSize="Micro"/>

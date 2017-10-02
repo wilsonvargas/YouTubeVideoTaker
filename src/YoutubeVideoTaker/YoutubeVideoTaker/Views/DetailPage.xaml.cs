@@ -85,7 +85,7 @@ namespace YoutubeVideoTaker.Views
                     var cancellationToken = new CancellationTokenSource();
 
                     await viewModel.DownloadVideoAsync(item.Url, progress, cancellationToken.Token, fileName);
-                    CrossLocalNotifications.Current.Show(viewModel.Video.Title, "Download Completed!");
+                    //CrossLocalNotifications.Current.Show(viewModel.Video.Title, "Download Completed!");
                 }
                 else
                 {
@@ -95,6 +95,7 @@ namespace YoutubeVideoTaker.Views
             }
             catch (Exception ex)
             {
+                throw;
             }
         }
     }
