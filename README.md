@@ -1,2 +1,2 @@
-# youtubevideotaker
-YouTube Video Taker
+# YouTube Video Taker
+App to download videos from YouTube.
