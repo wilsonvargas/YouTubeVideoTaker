@@ -20,7 +20,7 @@ namespace YoutubeVideoTaker.Droid
 
             base.OnCreate(bundle);
 
-            FormsPlugin.Iconize.Droid.IconControls.Init(Resource.Id.toolbar);
+            Plugin.Iconize.Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
             Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.MaterialModule()).
                 With(new Plugin.Iconize.Fonts.SimpleLineIconsModule());
             LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.icon;
@@ -29,4 +29,3 @@ namespace YoutubeVideoTaker.Droid
         }
     }
 }
-

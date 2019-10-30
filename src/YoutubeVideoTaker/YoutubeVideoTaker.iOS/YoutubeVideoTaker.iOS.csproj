@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Xamarin.Forms.4.3.0.947036\build\Xamarin.Forms.props" Condition="Exists('..\..\packages\Xamarin.Forms.4.3.0.947036\build\Xamarin.Forms.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -101,6 +102,8 @@
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
+    <BundleResource Include="Resources\materialicons.ttf" />
+    <BundleResource Include="Resources\fontawesome.ttf" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -122,47 +125,46 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ButtonCircle.FormsPlugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Plugins.Forms.ButtonCircle.1.2.25\lib\Xamarin.iOS10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Plugins.Forms.ButtonCircle.2.0.3\lib\Xamarin.iOS10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ButtonCircle.FormsPlugin.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Plugins.Forms.ButtonCircle.1.2.25\lib\Xamarin.iOS10\ButtonCircle.FormsPlugin.iOS.dll</HintPath>
+      <HintPath>..\..\packages\Plugins.Forms.ButtonCircle.2.0.3\lib\Xamarin.iOS10\ButtonCircle.FormsPlugin.iOS.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="FormsPlugin.Iconize, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.FormsPlugin.Iconize.1.0.10\lib\Xamarin.iOS10\FormsPlugin.Iconize.dll</HintPath>
+    <Reference Include="ImageCircle.Forms.Plugin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.3.0.0.5\lib\xamarinios10\ImageCircle.Forms.Plugin.dll</HintPath>
     </Reference>
-    <Reference Include="FormsPlugin.Iconize.iOS, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.FormsPlugin.Iconize.1.0.10\lib\Xamarin.iOS10\FormsPlugin.Iconize.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="ImageCircle.Forms.Plugin.Abstractions, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.1.8.1\lib\Xamarin.iOS10\ImageCircle.Forms.Plugin.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="ImageCircle.Forms.Plugin.iOS, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.1.8.1\lib\Xamarin.iOS10\ImageCircle.Forms.Plugin.iOS.dll</HintPath>
+    <Reference Include="LtGt, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LtGt.1.0.2\lib\netstandard2.0\LtGt.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Plugin.Clipboard, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Plugins.Clipboard.1.2.0\lib\Xamarin.iOS10\Plugin.Clipboard.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Clipboard.Abstractions, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Plugins.Clipboard.1.2.0\lib\Xamarin.iOS10\Plugin.Clipboard.Abstractions.dll</HintPath>
+    <Reference Include="Plugin.Clipboard, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Plugins.Clipboard.2.2.1\lib\Xamarin.iOS10\Plugin.Clipboard.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Iconize, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugin.Iconize.1.0.10\lib\Xamarin.iOS10\Plugin.Iconize.dll</HintPath>
+    <Reference Include="Plugin.Clipboard.Abstractions, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Plugins.Clipboard.2.2.1\lib\Xamarin.iOS10\Plugin.Clipboard.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Iconize.iOS, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugin.Iconize.1.0.10\lib\Xamarin.iOS10\Plugin.Iconize.iOS.dll</HintPath>
+    <Reference Include="Plugin.Iconize, Version=3.5.0.129, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Iconize.3.5.0.129\lib\xamarinios10\Plugin.Iconize.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Iconize.Material.iOS, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugin.Iconize.Material.1.0.10\lib\Xamarin.iOS10\Plugin.Iconize.Material.iOS.dll</HintPath>
+    <Reference Include="Plugin.Iconize.Material, Version=3.5.0.129, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Iconize.Material.3.5.0.129\lib\xamarinios10\Plugin.Iconize.Material.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Iconize.SimpleLineIcons.iOS, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugin.Iconize.SimpleLineIcons.1.0.10\lib\Xamarin.iOS10\Plugin.Iconize.SimpleLineIcons.iOS.dll</HintPath>
+    <Reference Include="Plugin.Iconize.SimpleLineIcons, Version=3.5.0.129, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Iconize.SimpleLineIcons.3.5.0.129\lib\xamarinios10\Plugin.Iconize.SimpleLineIcons.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.LocalNotifications, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugins.Notifier.2.1.0\lib\Xamarin.iOS10\Plugin.LocalNotifications.dll</HintPath>
+    <Reference Include="Plugin.LocalNotifications, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Notifier.3.0.1\lib\Xamarin.iOS10\Plugin.LocalNotifications.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.LocalNotifications.Abstractions, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugins.Notifier.2.1.0\lib\Xamarin.iOS10\Plugin.LocalNotifications.Abstractions.dll</HintPath>
+    <Reference Include="Plugin.LocalNotifications.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Notifier.3.0.1\lib\Xamarin.iOS10\Plugin.LocalNotifications.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Sprache, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sprache.2.2.0\lib\netstandard2.0\Sprache.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.IO.Compression" />
@@ -170,20 +172,20 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.267\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Forms.4.3.0.947036\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.267\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+    <Reference Include="Xamarin.Forms.Platform, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.4.3.0.947036\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Platform.iOS, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.267\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Forms.4.3.0.947036\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.267\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Forms.4.3.0.947036\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="YoutubeExplode, Version=3.2.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\YoutubeExplode.3.2.5\lib\netstandard1.1\YoutubeExplode.dll</HintPath>
+    <Reference Include="YoutubeExplode, Version=4.7.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\YoutubeExplode.4.7.10\lib\netstandard2.0\YoutubeExplode.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -196,11 +198,12 @@
     <BundleResource Include="Resources\portada.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <Import Project="..\..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.4.3.0.947036\build\Xamarin.Forms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.4.3.0.947036\build\Xamarin.Forms.props'))" />
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.4.3.0.947036\build\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.4.3.0.947036\build\Xamarin.Forms.targets'))" />
   </Target>
+  <Import Project="..\..\packages\Xamarin.Forms.4.3.0.947036\build\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.4.3.0.947036\build\Xamarin.Forms.targets')" />
 </Project>
