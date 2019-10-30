@@ -16,63 +16,9 @@ namespace YoutubeVideoTaker.ViewModels
 {
     public class DetailPageViewModel : ViewModelBase
     {
-        const int _downloadImageTimeoutInSeconds = 15;
-        readonly HttpClient _httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(_downloadImageTimeoutInSeconds) };
-        #region Properties
-        private VideoInfo _video;
-
-        public VideoInfo Video
+        public DetailPageViewModel()
         {
-            get { return _video; }
-            set { SetProperty(ref _video, value); }
         }
-
-        private List<MediaStreamList> _listOfStreamInfo;
-
-        public List<MediaStreamList> ListOfStreamInfo
-        {
-            get { return _listOfStreamInfo; }
-            set { SetProperty(ref _listOfStreamInfo, value); }
-        }
-
-        private double _progress;
-
-        public double Progress
-        {
-            get { return _progress; }
-            set { SetProperty(ref _progress, value); }
-        }
-
-        private long _labelProgress;
-
-        public long LabelProgress
-        {
-            get { return _labelProgress; }
-            set { SetProperty(ref _labelProgress, value); }
-        }
-
-        private long _totalDownload;
-
-        public long TotalDownload
-        {
-            get { return _totalDownload; }
-            set { SetProperty(ref _totalDownload, value); }
-        }
-
-        private bool _isComplete;
-
-        public bool IsComplete
-        {
-            get { return _isComplete; }
-            set { SetProperty(ref _isComplete, value); }
-        }
-
-
-
-
-        #endregion
-
-        private DateTime _date;
 
         public DateTime Date
         {
@@ -80,10 +26,57 @@ namespace YoutubeVideoTaker.ViewModels
             set { SetProperty(ref _date, value); }
         }
 
-        public DetailPageViewModel() {
-            
+        private const int _downloadImageTimeoutInSeconds = 15;
+        private readonly HttpClient _httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(_downloadImageTimeoutInSeconds) };
 
+        #region Properties
+
+        public bool IsComplete
+        {
+            get { return _isComplete; }
+            set { SetProperty(ref _isComplete, value); }
         }
+
+        public long LabelProgress
+        {
+            get { return _labelProgress; }
+            set { SetProperty(ref _labelProgress, value); }
+        }
+
+        public List<MediaStreamList> ListOfStreamInfo
+        {
+            get { return _listOfStreamInfo; }
+            set { SetProperty(ref _listOfStreamInfo, value); }
+        }
+
+        public double Progress
+        {
+            get { return _progress; }
+            set { SetProperty(ref _progress, value); }
+        }
+
+        public long TotalDownload
+        {
+            get { return _totalDownload; }
+            set { SetProperty(ref _totalDownload, value); }
+        }
+
+        public Video Video
+        {
+            get { return _video; }
+            set { SetProperty(ref _video, value); }
+        }
+
+        private bool _isComplete;
+        private long _labelProgress;
+        private List<MediaStreamList> _listOfStreamInfo;
+        private double _progress;
+        private long _totalDownload;
+        private Video _video;
+
+        #endregion Properties
+
+        private DateTime _date;
 
         public async Task DownloadVideoAsync(string url, IProgress<double> progress, CancellationToken token, string fileName)
         {
@@ -94,14 +87,16 @@ namespace YoutubeVideoTaker.ViewModels
                 case Device.iOS:
                     path = DependencyService.Get<IFiles>().RootDirectory();
                     break;
+
                 case Device.Android:
                     path = DependencyService.Get<IFiles>().RootDirectory();
                     break;
-                case Device.Windows:
+
+                case Device.UWP:
                     path = await DependencyService.Get<IFiles>().RootDirectoryUWP(fileName);
                     break;
             }
-            
+
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception(string.Format("The request returned with HTTP status code {0}", response.StatusCode));
@@ -110,7 +105,7 @@ namespace YoutubeVideoTaker.ViewModels
             var total = response.Content.Headers.ContentLength.HasValue ? response.Content.Headers.ContentLength.Value : -1L;
             TotalDownload = total;
             var canReportProgress = total != -1 && progress != null;
-            
+
             using (var stream = await response.Content.ReadAsStreamAsync())
             {
                 var totalRead = 0L;
@@ -130,31 +125,25 @@ namespace YoutubeVideoTaker.ViewModels
                     {
                         var data = new byte[read];
                         buffer.ToList().CopyTo(0, data, 0, read);
-                        
+
                         await DependencyService.Get<IFiles>().WriteVideoFile(data, fileName, path);
 
                         totalRead += read;
 
                         if (canReportProgress)
                         {
-                            
                             LabelProgress = totalRead;
                             progress.Report((totalRead * 1d) / (total * 1d));
                         }
                     }
                     IsComplete = !isMoreToRead;
                 } while (isMoreToRead);
-
             }
         }
 
         public void SetValueToProgressBar(double value)
-        {            
+        {
             Progress = value;
         }
-
-
-
-
     }
-    }
+}

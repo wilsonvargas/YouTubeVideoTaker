@@ -13,22 +13,20 @@ using YoutubeVideoTaker.ViewModels;
 using YoutubeExplode;
 using YoutubeExplode.Models;
 using YoutubeExplode.Models.MediaStreams;
-using YoutubeExplode.Services;
 
 namespace YoutubeVideoTaker.Views
 {
     public partial class MainPage : ContentPage
     {
-        MainPageViewModel viewModel;
         public MainPage()
         {
             BindingContext = viewModel = new MainPageViewModel();
             viewModel.Navigation = Navigation;
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
-            
         }
-        
+
+        private MainPageViewModel viewModel;
         //public async void SaveVideoToDisk(string link)
         //{
         //    var client = new YoutubeClient();
@@ -40,10 +38,9 @@ namespace YoutubeVideoTaker.Views
         //    }
         //    catch (Exception ex)
         //    {
-
         //        throw;
         //    }
-           
+
         //    resultado.Text = $"Id: {videoInfo.Id} | Title: {videoInfo.Title} | Author: {videoInfo.Author.Title} | Description: {videoInfo.Description}";
         //    var streamInfo = videoInfo.MixedStreams
         //        .OrderBy(s => s.VideoQuality)
@@ -52,13 +49,13 @@ namespace YoutubeVideoTaker.Views
         //    resultado.Text += $"Quality: {streamInfo.VideoQualityLabel} | Container: {streamInfo.Container} | Size: {normalizedFileSize}";
         //    string fileExtension = streamInfo.Container.GetFileExtension();
         //    string fileName = $"{videoInfo.Title}.{fileExtension}";
-            
+
         //    var progress = new Progress<double>(p => SetValueToProgressBar(p));
 
         //    var cancellationToken = new CancellationTokenSource();
 
         //    await DownloadVideoAsync(streamInfo.Url , progress, cancellationToken.Token, fileName);
-            
+
         //}
 
         //private void SetValueToProgressBar(double value) {
@@ -112,7 +109,7 @@ namespace YoutubeVideoTaker.Views
         //                }
         //            }
         //        } while (isMoreToRead);
-             
+
         //    }
         //}
 

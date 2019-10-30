@@ -16,12 +16,23 @@ namespace YoutubeVideoTaker.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        public MainPageViewModel()
+        {
+            PasteCommand = new Command(Paste);
+            SearchCommand = new Command(Search);
+        }
+
+        public INavigation Navigation { get; set; }
         public ICommand PasteCommand { get; set; }
         public ICommand SearchCommand { get; set; }
-        public INavigation Navigation { get; set; }
 
         #region Properties
-        private string _url;
+
+        public string MessageError
+        {
+            get { return _messageError; }
+            set { SetProperty(ref _messageError, value); }
+        }
 
         public string Url
         {
@@ -30,19 +41,9 @@ namespace YoutubeVideoTaker.ViewModels
         }
 
         private string _messageError;
+        private string _url;
 
-        public string MessageError
-        {
-            get { return _messageError; }
-            set { SetProperty(ref _messageError, value); }
-        }
-        #endregion
-
-        public MainPageViewModel()
-        {
-            PasteCommand = new Command(Paste);
-            SearchCommand = new Command(Search);
-        }
+        #endregion Properties
 
         private async void Paste()
         {
@@ -56,14 +57,14 @@ namespace YoutubeVideoTaker.ViewModels
         {
             MessageError = string.Empty;
             var client = new YoutubeClient();
-            VideoInfo videoInfo;
+            Video videoInfo;
             try
             {
                 var id = Helper.NormalizeId(Url);
                 if (id != "")
                 {
                     IsBusy = true;
-                    videoInfo = await client.GetVideoInfoAsync(id);
+                    videoInfo = await client.GetVideoAsync(id);
                     await Navigation.PushAsync(new DetailPage(videoInfo), true);
                     IsBusy = false;
                 }

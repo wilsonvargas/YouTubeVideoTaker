@@ -9,60 +9,31 @@ using YoutubeVideoTaker.ViewModels;
 using YoutubeExplode.Models;
 using YoutubeExplode.Models.MediaStreams;
 using Plugin.LocalNotifications;
+using YoutubeExplode.Models.ClosedCaptions;
 
 namespace YoutubeVideoTaker.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailPage : ContentPage
     {
-        DetailPageViewModel viewModel;
-
-
-        public DetailPage(VideoInfo video)
+        public DetailPage(Video video)
         {
             InitializeComponent();
             BindingContext = viewModel = new DetailPageViewModel();
 
             viewModel.Date = DateTime.Today;
             viewModel.Video = video;
-            viewModel.ListOfStreamInfo = Helper.PopulateListGrouped(video);
+            //viewModel.ListOfStreamInfo = Helper.PopulateListGrouped(video);
 
             switch (Device.RuntimePlatform)
             {
-                case Device.Windows:
+                case Device.UWP:
                     NavigationPage.SetHasNavigationBar(this, false);
                     break;
             }
         }
 
-        private void showDescription_Clicked(object sender, EventArgs e)
-        {
-            if (containerLayout.IsVisible)
-            {
-                showDescription.Text = "md-keyboard-arrow-down";
-                containerLayout.IsVisible = false;
-            }
-            else
-            {
-                showDescription.Text = "md-keyboard-arrow-up";
-                containerLayout.IsVisible = true;
-            }
-
-        }
-
-        private void showMediaDownloads_Clicked(object sender, EventArgs e)
-        {
-            if (listMedia.IsVisible)
-            {
-                showMediaDownloads.Text = "md-keyboard-arrow-down";
-                listMedia.IsVisible = false;
-            }
-            else
-            {
-                showMediaDownloads.Text = "md-keyboard-arrow-up";
-                listMedia.IsVisible = true;
-            }
-        }
+        private DetailPageViewModel viewModel;
 
         private async void listMedia_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -71,7 +42,7 @@ namespace YoutubeVideoTaker.Views
             {
                 var result = await App.Current.MainPage.DisplayAlert("YouTube Downloader", "Do you want download: " +
                 viewModel.Video.Title + "." + item.Container.ToString() + Environment.NewLine +
-                "File Size: " + Helper.NormalizeFileSize(item.ContentLength) + "?", "Yes", "No");
+                "File Size: " + Helper.NormalizeFileSize(item.Size) + "?", "Yes", "No");
                 if (result)
                 {
                     showMediaDownloads.Text = "md-keyboard-arrow-down";
@@ -89,13 +60,40 @@ namespace YoutubeVideoTaker.Views
                 }
                 else
                 {
-
                     ((ListView)sender).SelectedItem = null;
                 }
             }
             catch (Exception ex)
             {
                 throw;
+            }
+        }
+
+        private void showDescription_Clicked(object sender, EventArgs e)
+        {
+            if (containerLayout.IsVisible)
+            {
+                showDescription.Text = "md-keyboard-arrow-down";
+                containerLayout.IsVisible = false;
+            }
+            else
+            {
+                showDescription.Text = "md-keyboard-arrow-up";
+                containerLayout.IsVisible = true;
+            }
+        }
+
+        private void showMediaDownloads_Clicked(object sender, EventArgs e)
+        {
+            if (listMedia.IsVisible)
+            {
+                showMediaDownloads.Text = "md-keyboard-arrow-down";
+                listMedia.IsVisible = false;
+            }
+            else
+            {
+                showMediaDownloads.Text = "md-keyboard-arrow-up";
+                listMedia.IsVisible = true;
             }
         }
     }

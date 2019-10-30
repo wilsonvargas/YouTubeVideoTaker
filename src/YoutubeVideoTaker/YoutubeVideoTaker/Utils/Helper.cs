@@ -5,18 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using YoutubeExplode;
 using YoutubeExplode.Models;
+using YoutubeExplode.Models.MediaStreams;
 
 namespace YoutubeVideoTaker.Utils
 {
     public static class Helper
     {
-        public static string NormalizeId(string input)
-        {
-            if (!YoutubeClient.TryParseVideoId(input, out string id))
-                id = input;
-            return id;
-        }
-
         public static string NormalizeFileSize(long fileSize)
         {
             string[] units = { "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
@@ -32,9 +26,17 @@ namespace YoutubeVideoTaker.Utils
             return $"{size:0.#} {units[unit]}";
         }
 
-        public static List<MediaStreamList> PopulateListGrouped(VideoInfo video) {
+        public static string NormalizeId(string input)
+        {
+            if (!YoutubeClient.TryParseVideoId(input, out string id))
+                id = input;
+            return id;
+        }
+
+        public static List<MediaStreamList> PopulateListGrouped(Video video, MediaStreamInfoSet mediaStreamInfos)
+        {
             var mixedStreams = new MediaStreamList();
-            var mixed = video.MixedStreams.OrderByDescending(s => s.VideoQuality).ToList();
+            var mixed = mediaStreamInfos.Muxed.ToList();
             mixedStreams.Heading = "Mixed Downloads";
             foreach (var item in mixed)
             {
@@ -42,7 +44,7 @@ namespace YoutubeVideoTaker.Utils
             }
 
             var videoStreams = new MediaStreamList();
-            var videoS = video.VideoStreams.OrderByDescending(s => s.VideoQuality).ToList();
+            var videoS = mediaStreamInfos.Video.ToList();
             videoStreams.Heading = "Video Only Downloads";
             foreach (var item in videoS)
             {
@@ -50,7 +52,7 @@ namespace YoutubeVideoTaker.Utils
             }
 
             var audioStreams = new MediaStreamList();
-            var audio = video.AudioStreams.OrderByDescending(s => s.ContentLength).ToList();
+            var audio = mediaStreamInfos.Audio.ToList();
             audioStreams.Heading = "Audio Only Downloads";
             foreach (var item in audio)
             {

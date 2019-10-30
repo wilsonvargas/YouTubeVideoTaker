@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
-             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              xmlns:converters="clr-namespace:YoutubeVideoTaker.Converters"
              x:Class="YoutubeVideoTaker.Views.DetailPage"
              BackgroundColor="#ededed"
@@ -11,34 +11,34 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:FileSizeToStringConverter x:Key="FileSizeToStringConverter" />
-            <converters:FileTotalSizeToStringConverter x:Key="FileTotalSizeToStringConverter"/>
-            <converters:FormatToStringConverter x:Key="FormatToStringConverter"/>
-            <converters:QualityToStringConverter x:Key="QualityToStringConverter"/>
-            <converters:TrueToFalseConverter x:Key="TrueToFalseConverter"/>
+            <converters:FileTotalSizeToStringConverter x:Key="FileTotalSizeToStringConverter" />
+            <converters:FormatToStringConverter x:Key="FormatToStringConverter" />
+            <converters:QualityToStringConverter x:Key="QualityToStringConverter" />
+            <converters:TrueToFalseConverter x:Key="TrueToFalseConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Image Source="{Binding Video.ImageHighResUrl}" Grid.Row="0" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="Fill"/>
+            <Image Source="{Binding Video.ImageHighResUrl}" Grid.Row="0" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
             <StackLayout Orientation="Vertical" Grid.Row="1" BackgroundColor="White" Margin="5, 0" Padding="15">
-                <Label FontSize="Medium" TextColor="Black" Text="{Binding Video.Title}"/>
+                <Label FontSize="Medium" TextColor="Black" Text="{Binding Video.Title}" />
                 <StackLayout Orientation="Horizontal">
-                    <controls:CircleImage Source="{Binding Video.Author.LogoUrl}" HeightRequest="60" WidthRequest="60"/>
+                    <controls:CircleImage Source="{Binding Video.Author.LogoUrl}" HeightRequest="60" WidthRequest="60" />
                     <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
-                        <Label FontSize="Small" TextColor="Black" Text="{Binding Video.Author.Title}"/>
-                        <Label FontSize="Small" TextColor="Gray" Text="{Binding Video.Duration, StringFormat='{}{0:hh\\:mm\\:ss}'}}"/>
+                        <Label FontSize="Small" TextColor="Black" Text="{Binding Video.Author.Title}" />
+                        <Label FontSize="Small" TextColor="Gray" Text="{Binding Video.Duration, StringFormat='{}{0:hh\\:mm\\:ss}'}}" />
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                            <Label FontSize="Micro" TextColor="Gray" Text="{Binding Video.ViewCount, StringFormat=\{0:N0\}, Mode=OneWay}"/>
-                            <Label FontSize="Micro" TextColor="Gray" Text="Views" Margin="5,0,0,0"/>
+                            <Label FontSize="Micro" TextColor="Gray" Text="{Binding Video.ViewCount, StringFormat=\{0:N0\}, Mode=OneWay}" />
+                            <Label FontSize="Micro" TextColor="Gray" Text="Views" Margin="5,0,0,0" />
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                             <iconize:IconLabel Text="icon-like" FontSize="Small" TextColor="Gray" />
@@ -53,15 +53,15 @@
             <StackLayout x:Name="containerDownload" IsVisible="False" Orientation="Vertical" Grid.Row="2" BackgroundColor="White" Margin="5, 0" Padding="10">
                 <StackLayout Orientation="Horizontal">
                     <iconize:IconLabel Text="md-file-download" FontSize="Medium" TextColor="Gray" />
-                    <Label FontSize="Small" TextColor="Gray" Text="Download"/>
+                    <Label FontSize="Small" TextColor="Gray" Text="Download" />
                 </StackLayout>
                 <StackLayout  Orientation="Vertical" HeightRequest="100">
                     <StackLayout Orientation="Horizontal" IsVisible="{Binding IsComplete, Converter={StaticResource TrueToFalseConverter}}">
-                        <Label FontSize="Small" TextColor="Gray" Text="{Binding LabelProgress, Converter={StaticResource FileSizeToStringConverter}, StringFormat=\{0\}, Mode=OneWay}"/>
-                        <Label FontSize="Small" TextColor="Gray" Text="{Binding TotalDownload, Converter={StaticResource FileTotalSizeToStringConverter}, StringFormat=\{0\}, Mode=OneWay}"/>
+                        <Label FontSize="Small" TextColor="Gray" Text="{Binding LabelProgress, Converter={StaticResource FileSizeToStringConverter}, StringFormat=\{0\}, Mode=OneWay}" />
+                        <Label FontSize="Small" TextColor="Gray" Text="{Binding TotalDownload, Converter={StaticResource FileTotalSizeToStringConverter}, StringFormat=\{0\}, Mode=OneWay}" />
                     </StackLayout>
                     <StackLayout Orientation="Vertical" IsVisible="{Binding IsComplete}">
-                        <Label FontSize="Small" TextColor="Gray" HorizontalOptions="StartAndExpand" Text="Download Completed!"/>
+                        <Label FontSize="Small" TextColor="Gray" HorizontalOptions="StartAndExpand" Text="Download Completed!" />
                     </StackLayout>
                     <ProgressBar HeightRequest="1" Progress="{Binding Progress, Mode=OneWay}" />
                 </StackLayout>
@@ -69,8 +69,8 @@
             <StackLayout Orientation="Vertical" Grid.Row="3" BackgroundColor="White" Margin="5, 0" Padding="10">
                 <StackLayout Orientation="Horizontal">
                     <iconize:IconLabel Text="md-comment" FontSize="Medium" TextColor="Gray" />
-                    <Label FontSize="Small" TextColor="Gray" Text="Description"/>
-                    <iconize:IconButton x:Name="showDescription" HorizontalOptions="EndAndExpand" Text="md-keyboard-arrow-down" FontSize="Medium" TextColor="Gray" BackgroundColor="White" Clicked="showDescription_Clicked"/>
+                    <Label FontSize="Small" TextColor="Gray" Text="Description" />
+                    <iconize:IconButton x:Name="showDescription" HorizontalOptions="EndAndExpand" Text="md-keyboard-arrow-down" FontSize="Medium" TextColor="Gray" BackgroundColor="White" Clicked="showDescription_Clicked" />
                 </StackLayout>
                 <ScrollView x:Name="containerLayout" IsVisible="False" HeightRequest="200">
                     <StackLayout  Orientation="Vertical">
@@ -81,8 +81,8 @@
             <StackLayout Orientation="Vertical" Grid.Row="4" BackgroundColor="White" Margin="5, 0" Padding="10">
                 <StackLayout Orientation="Horizontal">
                     <iconize:IconLabel Text="md-play-circle-outline" FontSize="Medium" TextColor="Gray" />
-                    <Label FontSize="Small" TextColor="Gray" Text="Media downloads"/>
-                    <iconize:IconButton x:Name="showMediaDownloads" HorizontalOptions="EndAndExpand" Text="md-keyboard-arrow-down" FontSize="Medium" TextColor="Gray" BackgroundColor="White" Clicked="showMediaDownloads_Clicked"/>
+                    <Label FontSize="Small" TextColor="Gray" Text="Media downloads" />
+                    <iconize:IconButton x:Name="showMediaDownloads" HorizontalOptions="EndAndExpand" Text="md-keyboard-arrow-down" FontSize="Medium" TextColor="Gray" BackgroundColor="White" Clicked="showMediaDownloads_Clicked" />
                 </StackLayout>
                 <ListView x:Name="listMedia" ItemsSource="{Binding ListOfStreamInfo}"
                           IsVisible="False"
@@ -90,7 +90,7 @@
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding Heading}" HeightRequest="35"/>
+                                <Label Text="{Binding Heading}" HeightRequest="35" />
                             </ViewCell>
                         </DataTemplate>
                     </ListView.GroupHeaderTemplate>
@@ -100,9 +100,9 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
                                     <iconize:IconLabel Text="md-file-download" FontSize="Medium" TextColor="Gray" />
-                                    <Label FontSize="Small" TextColor="Gray" Text="{Binding VideoQuality, Converter={StaticResource QualityToStringConverter}, Mode=OneWay}"/>
-                                    <Label FontSize="Small" TextColor="Gray" Text="{Binding Container, Converter={StaticResource FormatToStringConverter}, Mode=OneWay}"/>
-                                    <Label FontSize="Small" TextColor="Gray" Text="{Binding ContentLength, Converter={StaticResource FileSizeToStringConverter}, StringFormat=\{0\}, Mode=OneWay}"/>
+                                    <Label FontSize="Small" TextColor="Gray" Text="{Binding VideoQuality, Converter={StaticResource QualityToStringConverter}, Mode=OneWay}" />
+                                    <Label FontSize="Small" TextColor="Gray" Text="{Binding Container, Converter={StaticResource FormatToStringConverter}, Mode=OneWay}" />
+                                    <Label FontSize="Small" TextColor="Gray" Text="{Binding ContentLength, Converter={StaticResource FileSizeToStringConverter}, StringFormat=\{0\}, Mode=OneWay}" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
