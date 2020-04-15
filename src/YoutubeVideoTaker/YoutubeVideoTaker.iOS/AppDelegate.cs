@@ -23,9 +23,7 @@ namespace YoutubeVideoTaker.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
-            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.MaterialModule()).
-                With(new Plugin.Iconize.Fonts.SimpleLineIconsModule());
+            LoadApplication(new App());           
             ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
             ButtonCircle.FormsPlugin.iOS.ButtonCircleRenderer.Init();
             return base.FinishedLaunching(app, options);

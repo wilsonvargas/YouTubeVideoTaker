@@ -18,7 +18,6 @@ namespace YoutubeVideoTaker
             InitializeComponent();
 
             Locator.Instance.BuildContainer();
-            Locator.Instance.BuildContainer();
             navigationService = Locator.Instance.Resolve<INavigationService>();
             InitNavigation();
         }

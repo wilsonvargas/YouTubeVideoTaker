@@ -1,10 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:YoutubeVideoTaker.Converters"
              x:Class="YoutubeVideoTaker.App">
 	<Application.Resources>
 
-		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="MaterialIcons-Regular" />
+                <On Platform="Android" Value="materialicons.ttf#MaterialIcons-Regular" />
+                <On Platform="UWP" Value="Assets/Fonts/materialicons.ttf#MaterialIcons-Regular" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="SimpleLineIconFontFamily" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="simple-line-icons" />
+                <On Platform="Android" Value="simplelineicons.ttf#simple-line-icons" />
+                <On Platform="UWP" Value="Assets/Fonts/simplelineicons.ttf#simple-line-icons" />
+            </OnPlatform>
+
+            <!--Icons-->
+            <x:String x:Key="Like">&#xe068;</x:String>
+            <x:String x:Key="DisLike">&#xe06d;</x:String>
+            <x:String x:Key="Comment">&#xe0b9;</x:String>
+            <x:String x:Key="FileDownload">&#xe2c4;</x:String>
+            <x:String x:Key="PlayOutLine">&#xe039;</x:String>
+            <x:String x:Key="ArrowDown">&#xe313;</x:String>
+            <x:String x:Key="ArrowUp">&#xe316;</x:String>
+
+            <!--Converters-->
+            <converters:FileSizeToStringConverter x:Key="FileSizeToStringConverter" />
+            <converters:FileTotalSizeToStringConverter x:Key="FileTotalSizeToStringConverter" />
+            <converters:FormatToStringConverter x:Key="FormatToStringConverter" />
+            <converters:QualityToStringConverter x:Key="QualityToStringConverter" />
+            <converters:TrueToFalseConverter x:Key="TrueToFalseConverter" />
+        </ResourceDictionary>
 
 	</Application.Resources>
 </Application>

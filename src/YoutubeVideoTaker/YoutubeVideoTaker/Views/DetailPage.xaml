@@ -1,23 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             xmlns:converters="clr-namespace:YoutubeVideoTaker.Converters"
              x:Class="YoutubeVideoTaker.Views.DetailPage"
              BackgroundColor="#ededed"
              Title="Video Detail">
-
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:FileSizeToStringConverter x:Key="FileSizeToStringConverter" />
-            <converters:FileTotalSizeToStringConverter x:Key="FileTotalSizeToStringConverter" />
-            <converters:FormatToStringConverter x:Key="FormatToStringConverter" />
-            <converters:QualityToStringConverter x:Key="QualityToStringConverter" />
-            <converters:TrueToFalseConverter x:Key="TrueToFalseConverter" />
+            <Style TargetType="Label" x:Key="LabelStyle">
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Label" x:Key="IconLabelStyle">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ScrollView>
+    <ContentPage.Content>
+        <ScrollView>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -26,33 +31,33 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Image Source="{Binding Video.ImageHighResUrl}" Grid.Row="0" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+            <Image Source="{Binding ResumeVideo.Video.Thumbnails.StandardResUrl}" Grid.Row="0" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
             <StackLayout Orientation="Vertical" Grid.Row="1" BackgroundColor="White" Margin="5, 0" Padding="15">
-                <Label FontSize="Medium" TextColor="Black" Text="{Binding Video.Title}" />
+                <Label FontSize="Medium" TextColor="Black" Text="{Binding ResumeVideo.Video.Title}" />
                 <StackLayout Orientation="Horizontal">
-                    <controls:CircleImage Source="{Binding Video.Author.LogoUrl}" HeightRequest="60" WidthRequest="60" />
+                    <controls:CircleImage Source="{Binding ResumeVideo.Channel.LogoUrl}" HeightRequest="60" WidthRequest="60" />
                     <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
-                        <Label FontSize="Small" TextColor="Black" Text="{Binding Video.Author.Title}" />
-                        <Label FontSize="Small" TextColor="Gray" Text="{Binding Video.Duration, StringFormat='{}{0:hh\\:mm\\:ss}'}}" />
+                        <Label FontSize="Small" TextColor="Black" Text="{Binding ResumeVideo.Channel.Title}" />
+                        <Label Style="{StaticResource LabelStyle}" Text="{Binding ResumeVideo.Video.Duration, StringFormat='{}{0:hh\\:mm\\:ss}'}}" />
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                            <Label FontSize="Micro" TextColor="Gray" Text="{Binding Video.ViewCount, StringFormat=\{0:N0\}, Mode=OneWay}" />
-                            <Label FontSize="Micro" TextColor="Gray" Text="Views" Margin="5,0,0,0" />
+                                <Label Style="{StaticResource LabelStyle}" Text="{Binding ResumeVideo.Video.Engagement.ViewCount, StringFormat=\{0:N0\}, Mode=OneWay}" />
+                                <Label Style="{StaticResource LabelStyle}" Text="Views" Margin="5,0,0,0" />
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                            <iconize:IconLabel Text="icon-like" FontSize="Small" TextColor="Gray" />
-                            <Label FontSize="Micro" TextColor="Gray" VerticalTextAlignment="Center" Text="{Binding Video.LikeCount, StringFormat=\{0:N0\}, Mode=OneWay}" />
-                            <Label FontSize="Micro" TextColor="Gray" VerticalTextAlignment="Center" Text="|" />
-                            <iconize:IconLabel Text="icon-dislike" FontSize="Small" TextColor="Gray" />
-                            <Label FontSize="Micro" TextColor="Gray" VerticalTextAlignment="Center" Text="{Binding Video.DislikeCount, StringFormat=\{0:N0\}, Mode=OneWay}" />
+                                <Label Style="{StaticResource IconLabelStyle}" FontFamily="{StaticResource SimpleLineIconFontFamily}" Text="{StaticResource Like}" />
+                                <Label Style="{StaticResource LabelStyle}" Text="{Binding ResumeVideo.Video.Engagement.LikeCount, StringFormat=\{0:N0\}, Mode=OneWay}" />
+                                <Label Style="{StaticResource LabelStyle}" Text="|" />
+                                <Label Style="{StaticResource IconLabelStyle}" FontFamily="{StaticResource SimpleLineIconFontFamily}" Text="{StaticResource DisLike}" />
+                                <Label Style="{StaticResource LabelStyle}" Text="{Binding ResumeVideo.Video.Engagement.DislikeCount, StringFormat=\{0:N0\}, Mode=OneWay}" />
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
             <StackLayout x:Name="containerDownload" IsVisible="False" Orientation="Vertical" Grid.Row="2" BackgroundColor="White" Margin="5, 0" Padding="10">
                 <StackLayout Orientation="Horizontal">
-                    <iconize:IconLabel Text="md-file-download" FontSize="Medium" TextColor="Gray" />
+                    <Label FontFamily="{StaticResource MaterialFontFamily}" Text="{StaticResource FileDownload}" FontSize="Medium" TextColor="Gray" />
                     <Label FontSize="Small" TextColor="Gray" Text="Download" />
                 </StackLayout>
                 <StackLayout  Orientation="Vertical" HeightRequest="100">
@@ -67,30 +72,38 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout Orientation="Vertical" Grid.Row="3" BackgroundColor="White" Margin="5, 0" Padding="10">
-                <StackLayout Orientation="Horizontal">
-                    <iconize:IconLabel Text="md-comment" FontSize="Medium" TextColor="Gray" />
-                    <Label FontSize="Small" TextColor="Gray" Text="Description" />
-                    <iconize:IconButton x:Name="showDescription" HorizontalOptions="EndAndExpand" Text="md-keyboard-arrow-down" FontSize="Medium" TextColor="Gray" BackgroundColor="White" Clicked="showDescription_Clicked" />
-                </StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label FontFamily="{StaticResource MaterialFontFamily}" Text="{StaticResource Comment}" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" TextColor="Gray" />
+                    <Label FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center" TextColor="Gray" Text="Description" />
+                        <ImageButton x:Name="showDescription" VerticalOptions="Center" HorizontalOptions="EndAndExpand" BackgroundColor="White">
+                            <ImageButton.Source>
+                                <FontImageSource FontFamily="{DynamicResource MaterialFontFamily}" Size="44" Color="Gray" Glyph="{StaticResource ArrowDown}"/>
+                            </ImageButton.Source>
+                        </ImageButton>
+                    </StackLayout>
                 <ScrollView x:Name="containerLayout" IsVisible="False" HeightRequest="200">
                     <StackLayout  Orientation="Vertical">
-                        <Label FontSize="Small" TextColor="Gray" VerticalTextAlignment="Center" Text="{Binding Video.Description}" LineBreakMode="WordWrap"></Label>
+                        <Label FontSize="Small" TextColor="Gray" VerticalTextAlignment="Center" Text="{Binding ResumeVideo.Video.Description}" LineBreakMode="WordWrap"></Label>
                     </StackLayout>
                 </ScrollView>
             </StackLayout>
             <StackLayout Orientation="Vertical" Grid.Row="4" BackgroundColor="White" Margin="5, 0" Padding="10">
                 <StackLayout Orientation="Horizontal">
-                    <iconize:IconLabel Text="md-play-circle-outline" FontSize="Medium" TextColor="Gray" />
-                    <Label FontSize="Small" TextColor="Gray" Text="Media downloads" />
-                    <iconize:IconButton x:Name="showMediaDownloads" HorizontalOptions="EndAndExpand" Text="md-keyboard-arrow-down" FontSize="Medium" TextColor="Gray" BackgroundColor="White" Clicked="showMediaDownloads_Clicked" />
-                </StackLayout>
-                <ListView x:Name="listMedia" ItemsSource="{Binding ListOfStreamInfo}"
+                    <Label FontFamily="{StaticResource MaterialFontFamily}" VerticalOptions="Center" Text="{StaticResource PlayOutLine}" FontSize="Large" TextColor="Gray" />
+                    <Label FontSize="Medium" TextColor="Gray" VerticalOptions="Center" FontAttributes="Bold" Text="Media downloads" />
+                        <ImageButton x:Name="showMediaDownloads" VerticalOptions="Center" HorizontalOptions="EndAndExpand" BackgroundColor="White">
+                            <ImageButton.Source>
+                                <FontImageSource FontFamily="{DynamicResource MaterialFontFamily}" Size="44" Color="Gray" Glyph="{StaticResource ArrowDown}"/>
+                            </ImageButton.Source>
+                        </ImageButton>
+                    </StackLayout>
+                <ListView x:Name="listMedia" ItemsSource="{Binding ResumeVideo.MediaStreamList}"
                           IsVisible="False"
                           IsGroupingEnabled="true" ItemSelected="listMedia_ItemSelected">
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding Heading}" HeightRequest="35" />
+                                <Label FontSize="Medium" FontAttributes="Bold" Text="{Binding Heading}" HeightRequest="35" />
                             </ViewCell>
                         </DataTemplate>
                     </ListView.GroupHeaderTemplate>
@@ -99,10 +112,10 @@
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
-                                    <iconize:IconLabel Text="md-file-download" FontSize="Medium" TextColor="Gray" />
-                                    <Label FontSize="Small" TextColor="Gray" Text="{Binding VideoQuality, Converter={StaticResource QualityToStringConverter}, Mode=OneWay}" />
+                                    <Label FontFamily="{StaticResource MaterialFontFamily}" Text="{StaticResource FileDownload}" FontSize="Medium" TextColor="Gray" />
+                                    <Label FontSize="Small" TextColor="Gray" Text="{Binding VideoQualityLabel, Converter={StaticResource QualityToStringConverter}, Mode=OneWay}" />
                                     <Label FontSize="Small" TextColor="Gray" Text="{Binding Container, Converter={StaticResource FormatToStringConverter}, Mode=OneWay}" />
-                                    <Label FontSize="Small" TextColor="Gray" Text="{Binding ContentLength, Converter={StaticResource FileSizeToStringConverter}, StringFormat=\{0\}, Mode=OneWay}" />
+                                    <Label FontSize="Small" TextColor="Gray" Text="{Binding Size.TotalBytes, Converter={StaticResource FileSizeToStringConverter}, StringFormat=\{0\}, Mode=OneWay}" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
@@ -111,4 +124,6 @@
             </StackLayout>
         </Grid>
     </ScrollView>
+    </ContentPage.Content>
+    
 </ContentPage>
