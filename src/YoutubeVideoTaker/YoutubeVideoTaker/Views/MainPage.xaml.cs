@@ -11,8 +11,8 @@ using Xamarin.Forms;
 using YoutubeVideoTaker.Interfaces;
 using YoutubeVideoTaker.ViewModels;
 using YoutubeExplode;
-using YoutubeExplode.Models;
-using YoutubeExplode.Models.MediaStreams;
+//using YoutubeExplode.Models;
+//using YoutubeExplode.Models.MediaStreams;
 
 namespace YoutubeVideoTaker.Views
 {
@@ -20,13 +20,8 @@ namespace YoutubeVideoTaker.Views
     {
         public MainPage()
         {
-            BindingContext = viewModel = new MainPageViewModel();
-            viewModel.Navigation = Navigation;
-            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
         }
-
-        private MainPageViewModel viewModel;
         //public async void SaveVideoToDisk(string link)
         //{
         //    var client = new YoutubeClient();

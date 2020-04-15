@@ -5,35 +5,23 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
+using YoutubeVideoTaker.Services.Interfaces;
 
 namespace YoutubeVideoTaker.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
-        string title = string.Empty;
 
-        /// <summary>
-        /// Gets or sets the title.
-        /// </summary>
-        /// <value>The title.</value>
-        public string Title
+        public ICommand NavigationBackCommand => new Command(async () => await navigationService.NavigateBackAsync());
+        protected INavigationService navigationService;
+
+        public ViewModelBase(INavigationService navigationService)
         {
-            get { return title; }
-            set { SetProperty(ref title, value); }
+            this.navigationService = navigationService;
         }
 
-        string icon = string.Empty;
-
-        /// <summary>
-        /// Gets or sets the icon.
-        /// </summary>
-        /// <value>The icon.</value>
-        public string Icon
-        {
-            get { return icon; }
-            set { SetProperty(ref icon, value); }
-        }
 
         bool isBusy;
 
@@ -50,6 +38,11 @@ namespace YoutubeVideoTaker.ViewModels
             }
         }
 
+        public virtual Task InitializeAsync(object navigationData)
+        {
+            return Task.FromResult(false);
+        }
+
 
         /// <summary>
         /// Sets the property.
@@ -60,10 +53,7 @@ namespace YoutubeVideoTaker.ViewModels
         /// <param name="propertyName">Property name.</param>
         /// <param name="onChanged">On changed.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        protected bool SetProperty<T>(
-            ref T backingStore, T value,
-            [CallerMemberName]string propertyName = "",
-            Action onChanged = null)
+        protected bool SetProperty<T>(ref T backingStore, T value, [CallerMemberName]string propertyName = "", Action onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
                 return false;

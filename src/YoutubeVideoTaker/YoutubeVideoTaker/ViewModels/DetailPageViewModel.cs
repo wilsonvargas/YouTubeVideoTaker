@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using YoutubeVideoTaker.Interfaces;
 using YoutubeVideoTaker.Utils;
-using YoutubeExplode.Models;
-using YoutubeExplode.Models.MediaStreams;
 using static YoutubeVideoTaker.Views.DetailPage;
+using YoutubeExplode.Videos;
+using YoutubeVideoTaker.Services.Interfaces;
 
 namespace YoutubeVideoTaker.ViewModels
 {
     public class DetailPageViewModel : ViewModelBase
     {
-        public DetailPageViewModel()
+        public DetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
         }
 
@@ -43,11 +43,11 @@ namespace YoutubeVideoTaker.ViewModels
             set { SetProperty(ref _labelProgress, value); }
         }
 
-        public List<MediaStreamList> ListOfStreamInfo
-        {
-            get { return _listOfStreamInfo; }
-            set { SetProperty(ref _listOfStreamInfo, value); }
-        }
+        //public List<MediaStreamList> ListOfStreamInfo
+        //{
+        //    get { return _listOfStreamInfo; }
+        //    set { SetProperty(ref _listOfStreamInfo, value); }
+        //}
 
         public double Progress
         {
@@ -69,7 +69,7 @@ namespace YoutubeVideoTaker.ViewModels
 
         private bool _isComplete;
         private long _labelProgress;
-        private List<MediaStreamList> _listOfStreamInfo;
+        //private List<MediaStreamList> _listOfStreamInfo;
         private double _progress;
         private long _totalDownload;
         private Video _video;

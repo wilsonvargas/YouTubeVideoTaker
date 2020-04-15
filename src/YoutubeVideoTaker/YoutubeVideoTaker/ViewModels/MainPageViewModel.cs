@@ -9,14 +9,15 @@ using YoutubeVideoTaker.Interfaces;
 using YoutubeVideoTaker.Utils;
 using YoutubeVideoTaker.Views;
 using YoutubeExplode;
-using YoutubeExplode.Models;
 using Plugin.Clipboard;
+using YoutubeExplode.Videos;
+using YoutubeVideoTaker.Services.Interfaces;
 
 namespace YoutubeVideoTaker.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        public MainPageViewModel()
+        public MainPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             PasteCommand = new Command(Paste);
             SearchCommand = new Command(Search);
@@ -64,8 +65,8 @@ namespace YoutubeVideoTaker.ViewModels
                 if (id != "")
                 {
                     IsBusy = true;
-                    videoInfo = await client.GetVideoAsync(id);
-                    await Navigation.PushAsync(new DetailPage(videoInfo), true);
+                    videoInfo = await client.Videos.GetAsync(id);
+                    //await Navigation.PushAsync(new DetailPage(videoInfo), true);
                     IsBusy = false;
                 }
                 else
