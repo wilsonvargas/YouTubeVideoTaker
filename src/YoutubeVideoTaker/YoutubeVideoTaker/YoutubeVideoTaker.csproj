@@ -5,8 +5,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.2</Version>
+      <Version>12.0.3</Version>
     </PackageReference>
+    <PackageReference Include="Plugins.Forms.ButtonCircle" Version="2.0.3" />
     <PackageReference Include="Xam.Plugin.Iconize" Version="3.5.0.129" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle">
       <Version>3.0.0.5</Version>
@@ -15,13 +16,13 @@
       <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.3.0.947036</Version>
+      <Version>4.5.0.617</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Plugins.Clipboard">
       <Version>2.2.1</Version>
     </PackageReference>
     <PackageReference Include="YoutubeExplode">
-      <Version>4.7.10</Version>
+      <Version>5.0.1</Version>
     </PackageReference>
   </ItemGroup>
 </Project>

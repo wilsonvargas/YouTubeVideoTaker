@@ -190,7 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.9</Version>
+      <Version>6.2.10</Version>
     </PackageReference>
     <PackageReference Include="Xam.FormsPlugin.Iconize">
       <Version>1.0.10</Version>
@@ -211,13 +211,13 @@
       <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.3.0.947036</Version>
+      <Version>4.5.0.617</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Plugins.Clipboard">
       <Version>2.2.1</Version>
     </PackageReference>
     <PackageReference Include="YoutubeExplode">
-      <Version>4.7.10</Version>
+      <Version>5.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
