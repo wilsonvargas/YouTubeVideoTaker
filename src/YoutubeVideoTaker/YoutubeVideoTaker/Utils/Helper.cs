@@ -25,11 +25,10 @@ namespace YoutubeVideoTaker.Utils
             return $"{size:0.#} {units[unit]}";
         }
 
-        public static string NormalizeId(string input)
+        public static VideoId NormalizeId(string input)
         {
-            //if (!YoutubeClient.TryParseVideoId(input, out string id))
-            //    id = input;
-            return input;
+            VideoId videoId = new VideoId(input);
+            return videoId;
         }
 
         //public static List<MediaStreamList> PopulateListGrouped(Video video, MediaStreamInfoSet mediaStreamInfos)

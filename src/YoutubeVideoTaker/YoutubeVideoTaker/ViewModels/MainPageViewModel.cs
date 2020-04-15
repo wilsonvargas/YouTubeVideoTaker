@@ -12,20 +12,22 @@ using YoutubeExplode;
 using Plugin.Clipboard;
 using YoutubeExplode.Videos;
 using YoutubeVideoTaker.Services.Interfaces;
+using YoutubeExplode.Videos.Streams;
+using YoutubeExplode.Videos.ClosedCaptions;
+using YoutubeExplode.Channels;
+using YoutubeVideoTaker.Models;
 
 namespace YoutubeVideoTaker.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        public MainPageViewModel(INavigationService navigationService) : base(navigationService)
+        private IYouTubeClientService youTubeClientService;
+        public MainPageViewModel(INavigationService navigationService, IYouTubeClientService youTubeClientService) : base(navigationService)
         {
-            PasteCommand = new Command(Paste);
-            SearchCommand = new Command(Search);
+            this.youTubeClientService = youTubeClientService;
         }
-
-        public INavigation Navigation { get; set; }
-        public ICommand PasteCommand { get; set; }
-        public ICommand SearchCommand { get; set; }
+        public ICommand PasteCommand => new Command(() => Paste());
+        public ICommand SearchCommand => new Command(() => Search());
 
         #region Properties
 
@@ -57,16 +59,26 @@ namespace YoutubeVideoTaker.ViewModels
         private async void Search()
         {
             MessageError = string.Empty;
-            var client = new YoutubeClient();
-            Video videoInfo;
             try
             {
-                var id = Helper.NormalizeId(Url);
-                if (id != "")
+                VideoId videoId = Helper.NormalizeId(Url);
+                if (videoId.Value != string.Empty)
                 {
                     IsBusy = true;
-                    videoInfo = await client.Videos.GetAsync(id);
-                    //await Navigation.PushAsync(new DetailPage(videoInfo), true);
+                    StreamManifest streamManifest = await youTubeClientService.GetStreams(videoId);
+                    IReadOnlyList<ClosedCaptionTrackInfo> closedCaptionTrackInfos = await youTubeClientService.GetClosedCaption(videoId);
+                    Video video = await youTubeClientService.GetVideoDescription(videoId);
+                    Channel channel = await youTubeClientService.GetVideoChannel(videoId);
+
+                    ResumeVideo resumeVideo = new ResumeVideo();
+                    resumeVideo.AudioOnlyStreamInfos = streamManifest.GetAudioOnly().ToList();
+                    resumeVideo.Channel = channel;
+                    resumeVideo.ClosedCaptionTrackInfos = closedCaptionTrackInfos;
+                    resumeVideo.MuxedStreamInfos = streamManifest.GetMuxed().ToList();
+                    resumeVideo.Video = video;
+                    resumeVideo.VideoOnlyStreamInfos = streamManifest.GetVideoOnly().ToList();   
+
+                    await navigationService.NavigateToAsync<DetailPageViewModel>(resumeVideo);
                     IsBusy = false;
                 }
                 else

@@ -25,6 +25,7 @@ namespace YoutubeVideoTaker.Services
             container = new Container();
 
             RegisterSingleton<INavigationService, NavigationService>();
+            RegisterSingleton<IYouTubeClientService, YouTubeClientService>();
 
             Register<MainPageViewModel>();
             Register<DetailPageViewModel>();
