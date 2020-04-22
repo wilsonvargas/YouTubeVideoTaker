@@ -71,12 +71,10 @@ namespace YoutubeVideoTaker.ViewModels
                     Channel channel = await youTubeClientService.GetVideoChannel(videoId);
 
                     ResumeVideo resumeVideo = new ResumeVideo();
-                    resumeVideo.AudioOnlyStreamInfos = streamManifest.GetAudioOnly().ToList();
                     resumeVideo.Channel = channel;
                     resumeVideo.ClosedCaptionTrackInfos = closedCaptionTrackInfos;
-                    resumeVideo.MuxedStreamInfos = streamManifest.GetMuxed().ToList();
                     resumeVideo.Video = video;
-                    resumeVideo.VideoOnlyStreamInfos = streamManifest.GetVideoOnly().ToList();   
+                    resumeVideo.MediaStreamList = Helper.PopulateListGrouped(streamManifest);
 
                     await navigationService.NavigateToAsync<DetailPageViewModel>(resumeVideo);
                     IsBusy = false;

@@ -11,6 +11,7 @@ using YoutubeVideoTaker.Utils;
 using static YoutubeVideoTaker.Views.DetailPage;
 using YoutubeExplode.Videos;
 using YoutubeVideoTaker.Services.Interfaces;
+using YoutubeVideoTaker.Models;
 
 namespace YoutubeVideoTaker.ViewModels
 {
@@ -18,6 +19,20 @@ namespace YoutubeVideoTaker.ViewModels
     {
         public DetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
+        }
+
+        private ResumeVideo resumeVideo;
+
+        public ResumeVideo ResumeVideo
+        {
+            get { return resumeVideo; }
+            set { SetProperty(ref resumeVideo, value); }
+        }
+
+        public override Task InitializeAsync(object navigationData)
+        {
+            ResumeVideo = (ResumeVideo)navigationData;
+            return base.InitializeAsync(navigationData);
         }
 
         public DateTime Date
@@ -43,12 +58,6 @@ namespace YoutubeVideoTaker.ViewModels
             set { SetProperty(ref _labelProgress, value); }
         }
 
-        //public List<MediaStreamList> ListOfStreamInfo
-        //{
-        //    get { return _listOfStreamInfo; }
-        //    set { SetProperty(ref _listOfStreamInfo, value); }
-        //}
-
         public double Progress
         {
             get { return _progress; }
@@ -69,7 +78,6 @@ namespace YoutubeVideoTaker.ViewModels
 
         private bool _isComplete;
         private long _labelProgress;
-        //private List<MediaStreamList> _listOfStreamInfo;
         private double _progress;
         private long _totalDownload;
         private Video _video;
