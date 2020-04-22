@@ -18,11 +18,7 @@ namespace YoutubeVideoTaker.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(bundle);
-
-            Plugin.Iconize.Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
-            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.MaterialModule()).
-                With(new Plugin.Iconize.Fonts.SimpleLineIconsModule());
+            base.OnCreate(bundle);            
             LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.icon;
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
