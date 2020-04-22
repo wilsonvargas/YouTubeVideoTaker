@@ -105,7 +105,7 @@ namespace YoutubeVideoTaker.Services
 
                 if (page is MainPage)
                 {
-                    CurrentPage = page;
+                    CurrentPage = new NavigationPage(page);
                 }
                 else
                 {
