@@ -75,7 +75,7 @@
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                     <Label FontFamily="{StaticResource MaterialFontFamily}" Text="{StaticResource Comment}" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" TextColor="Gray" />
                     <Label FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center" TextColor="Gray" Text="Description" />
-                        <ImageButton x:Name="showDescription" VerticalOptions="Center" HorizontalOptions="EndAndExpand" BackgroundColor="White">
+                        <ImageButton x:Name="showDescription" Clicked="showDescription_Clicked" VerticalOptions="Center" HorizontalOptions="EndAndExpand" BackgroundColor="White">
                             <ImageButton.Source>
                                 <FontImageSource FontFamily="{DynamicResource MaterialFontFamily}" Size="44" Color="Gray" Glyph="{StaticResource ArrowDown}"/>
                             </ImageButton.Source>
@@ -91,7 +91,7 @@
                 <StackLayout Orientation="Horizontal">
                     <Label FontFamily="{StaticResource MaterialFontFamily}" VerticalOptions="Center" Text="{StaticResource PlayOutLine}" FontSize="Large" TextColor="Gray" />
                     <Label FontSize="Medium" TextColor="Gray" VerticalOptions="Center" FontAttributes="Bold" Text="Media downloads" />
-                        <ImageButton x:Name="showMediaDownloads" VerticalOptions="Center" HorizontalOptions="EndAndExpand" BackgroundColor="White">
+                        <ImageButton x:Name="showMediaDownloads" Clicked="showMediaDownloads_Clicked" VerticalOptions="Center" HorizontalOptions="EndAndExpand" BackgroundColor="White">
                             <ImageButton.Source>
                                 <FontImageSource FontFamily="{DynamicResource MaterialFontFamily}" Size="44" Color="Gray" Glyph="{StaticResource ArrowDown}"/>
                             </ImageButton.Source>

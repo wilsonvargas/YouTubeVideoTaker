@@ -68,12 +68,12 @@ namespace YoutubeVideoTaker.Views
         {
             if (containerLayout.IsVisible)
             {
-                showDescription.Text = "md-keyboard-arrow-down";
+            //    showDescription.Text = "md-keyboard-arrow-down";
                 containerLayout.IsVisible = false;
             }
             else
             {
-                showDescription.Text = "md-keyboard-arrow-up";
+            //    showDescription.Text = "md-keyboard-arrow-up";
                 containerLayout.IsVisible = true;
             }
         }
@@ -82,12 +82,12 @@ namespace YoutubeVideoTaker.Views
         {
             if (listMedia.IsVisible)
             {
-                showMediaDownloads.Text = "md-keyboard-arrow-down";
+            //    showMediaDownloads.Text = "md-keyboard-arrow-down";
                 listMedia.IsVisible = false;
             }
             else
             {
-                showMediaDownloads.Text = "md-keyboard-arrow-up";
+            //    showMediaDownloads.Text = "md-keyboard-arrow-up";
                 listMedia.IsVisible = true;
             }
         }
