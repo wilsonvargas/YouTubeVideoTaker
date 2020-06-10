@@ -20,7 +20,6 @@ namespace YoutubeVideoTaker.Views
         public DetailPage()
         {
             InitializeComponent();
-            //viewModel.ListOfStreamInfo = Helper.PopulateListGrouped(video);
 
             switch (Device.RuntimePlatform)
             {
@@ -62,34 +61,6 @@ namespace YoutubeVideoTaker.Views
             //{
             //    throw;
             //}
-        }
-
-        private void showDescription_Clicked(object sender, EventArgs e)
-        {
-            if (containerLayout.IsVisible)
-            {
-            //    showDescription.Text = "md-keyboard-arrow-down";
-                containerLayout.IsVisible = false;
-            }
-            else
-            {
-            //    showDescription.Text = "md-keyboard-arrow-up";
-                containerLayout.IsVisible = true;
-            }
-        }
-
-        private void showMediaDownloads_Clicked(object sender, EventArgs e)
-        {
-            if (listMedia.IsVisible)
-            {
-            //    showMediaDownloads.Text = "md-keyboard-arrow-down";
-                listMedia.IsVisible = false;
-            }
-            else
-            {
-            //    showMediaDownloads.Text = "md-keyboard-arrow-up";
-                listMedia.IsVisible = true;
-            }
         }
     }
 }

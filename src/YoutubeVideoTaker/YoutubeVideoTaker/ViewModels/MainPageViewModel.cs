@@ -25,6 +25,7 @@ namespace YoutubeVideoTaker.ViewModels
         public MainPageViewModel(INavigationService navigationService, IYouTubeClientService youTubeClientService) : base(navigationService)
         {
             this.youTubeClientService = youTubeClientService;
+            Url = "https://www.youtube.com/watch?v=T0f06xkcL08";
         }
         public ICommand PasteCommand => new Command(() => Paste());
         public ICommand SearchCommand => new Command(() => Search());

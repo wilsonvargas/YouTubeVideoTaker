@@ -12,6 +12,8 @@ using static YoutubeVideoTaker.Views.DetailPage;
 using YoutubeExplode.Videos;
 using YoutubeVideoTaker.Services.Interfaces;
 using YoutubeVideoTaker.Models;
+using System.Windows.Input;
+using YoutubeVideoTaker.Constants;
 
 namespace YoutubeVideoTaker.ViewModels
 {
@@ -19,30 +21,15 @@ namespace YoutubeVideoTaker.ViewModels
     {
         public DetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-        }
-
-        private ResumeVideo resumeVideo;
-
-        public ResumeVideo ResumeVideo
-        {
-            get { return resumeVideo; }
-            set { SetProperty(ref resumeVideo, value); }
-        }
+        }       
 
         public override Task InitializeAsync(object navigationData)
         {
             ResumeVideo = (ResumeVideo)navigationData;
+            DescriptionVisibilityIndicator = IconConstants.ArrowDown;
+            VideosVisibilityIndicator = IconConstants.ArrowDown;
             return base.InitializeAsync(navigationData);
         }
-
-        public DateTime Date
-        {
-            get { return _date; }
-            set { SetProperty(ref _date, value); }
-        }
-
-        private const int _downloadImageTimeoutInSeconds = 15;
-        private readonly HttpClient _httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(_downloadImageTimeoutInSeconds) };
 
         #region Properties
 
@@ -76,15 +63,65 @@ namespace YoutubeVideoTaker.ViewModels
             set { SetProperty(ref _video, value); }
         }
 
+        public bool IsDescriptionVisible
+        {
+            get { return isDescriptionVisible; }
+            set { SetProperty(ref isDescriptionVisible, value); }
+        }
+
+
+        public bool IsListVideoVisible
+        {
+            get { return isListVideoVisible; }
+            set { SetProperty(ref isListVideoVisible, value); }
+        }
+
+        public bool IsDownloading
+        {
+            get { return isDownloading; }
+            set { SetProperty(ref isDownloading, value); }
+        }
+
+        public ResumeVideo ResumeVideo
+        {
+            get { return resumeVideo; }
+            set { SetProperty(ref resumeVideo, value); }
+        }      
+
+        public string DescriptionVisibilityIndicator
+        {
+            get { return descriptionVisibilityIndicator; }
+            set { SetProperty(ref descriptionVisibilityIndicator, value); }
+        }       
+
+        public string VideosVisibilityIndicator
+        {
+            get { return videosVisibilityIndicator; }
+            set { SetProperty(ref videosVisibilityIndicator, value); }
+        }
+
+        private string videosVisibilityIndicator;
+        private string descriptionVisibilityIndicator;
+        private bool isDescriptionVisible;
+        private bool isListVideoVisible;
+        private bool isDownloading;
         private bool _isComplete;
         private long _labelProgress;
         private double _progress;
         private long _totalDownload;
         private Video _video;
+        private ResumeVideo resumeVideo;
 
         #endregion Properties
 
-        private DateTime _date;
+        #region Commands
+        public ICommand ShowDescriptionCommand => new Command(() => ShowDescription());
+        public ICommand ShowVideosCommand => new Command(() => ShowVideos());
+        #endregion
+
+        private const int _downloadImageTimeoutInSeconds = 15;
+        private readonly HttpClient _httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(_downloadImageTimeoutInSeconds) };
+
 
         public async Task DownloadVideoAsync(string url, IProgress<double> progress, CancellationToken token, string fileName)
         {
@@ -117,7 +154,7 @@ namespace YoutubeVideoTaker.ViewModels
             using (var stream = await response.Content.ReadAsStreamAsync())
             {
                 var totalRead = 0L;
-                var buffer = new byte[4096];
+                var buffer = new byte[2048];
                 var isMoreToRead = true;
                 do
                 {
@@ -149,9 +186,16 @@ namespace YoutubeVideoTaker.ViewModels
             }
         }
 
-        public void SetValueToProgressBar(double value)
+        private void ShowDescription()
         {
-            Progress = value;
+            IsDescriptionVisible = !IsDescriptionVisible;
+            DescriptionVisibilityIndicator = (IsDescriptionVisible) ? IconConstants.ArrowUp : IconConstants.ArrowDown;
+        }
+
+        private void ShowVideos()
+        {
+            IsListVideoVisible = !IsListVideoVisible;
+            VideosVisibilityIndicator = (IsListVideoVisible) ? IconConstants.ArrowUp : IconConstants.ArrowDown;
         }
     }
 }

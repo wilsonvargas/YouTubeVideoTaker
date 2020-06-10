@@ -17,6 +17,21 @@
                 <On Platform="Android" Value="simplelineicons.ttf#simple-line-icons" />
                 <On Platform="UWP" Value="Assets/Fonts/simplelineicons.ttf#simple-line-icons" />
             </OnPlatform>
+            
+            <!--Styles-->
+
+            <Style TargetType="Label" x:Key="LabelStyle">
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Label" x:Key="IconLabelStyle">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
 
             <!--Icons-->
             <x:String x:Key="Like">&#xe068;</x:String>
@@ -24,8 +39,6 @@
             <x:String x:Key="Comment">&#xe0b9;</x:String>
             <x:String x:Key="FileDownload">&#xe2c4;</x:String>
             <x:String x:Key="PlayOutLine">&#xe039;</x:String>
-            <x:String x:Key="ArrowDown">&#xe313;</x:String>
-            <x:String x:Key="ArrowUp">&#xe316;</x:String>
 
             <!--Converters-->
             <converters:FileSizeToStringConverter x:Key="FileSizeToStringConverter" />
