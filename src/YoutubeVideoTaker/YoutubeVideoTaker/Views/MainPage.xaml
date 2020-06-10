@@ -7,11 +7,11 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="15">
-                <Image Source="portada.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  />
+                <Image Source="portada.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                     <Entry Placeholder="Paste here your url video" Text="{Binding Url}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
                     <Label Text="{Binding MessageError}" TextColor="Red" FontSize="Micro"/>
